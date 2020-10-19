@@ -3,9 +3,11 @@ package main
 import (
 	"fmt"
 	"time"
+
+	"github.com/spf13/cobra"
 )
 
-func express () {
+func express() {
 	/* time 的格式来源 */
 	time.Now()
 	loc, err := time.LoadLocation("Asia/Shanghai")
@@ -19,7 +21,7 @@ func express () {
 }
 
 // ticker 里每隔多长时间。ticker.C里多一个元素。
-func ticker()  {
+func ticker() {
 	ticker := time.NewTicker(time.Second)
 	for {
 		select {
@@ -29,7 +31,7 @@ func ticker()  {
 	}
 }
 
-func tick()  {
+func tick() {
 	tick := time.Tick(time.Second)
 	for range tick {
 		fmt.Println("time tick")
@@ -37,17 +39,17 @@ func tick()  {
 }
 
 // ticker 里每到了某某时间错。ticker.C里多一个元素。
-func timer()  {
+func timer() {
 	//for {
-		timer := time.NewTimer(time.Second)
+	timer := time.NewTimer(time.Second)
 
-		for range timer.C {
-			fmt.Println("tick ")
-		}
-		//select {
-		//case <-timer.C:
-		//	fmt.Println("this is a timer")
-		//}
+	for range timer.C {
+		fmt.Println("tick ")
+	}
+	//select {
+	//case <-timer.C:
+	//	fmt.Println("this is a timer")
+	//}
 	//}
 }
 
