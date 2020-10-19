@@ -17,13 +17,12 @@ func main() {
 		fmt.Println("no params")
 		return
 	}
-	fmt.Println(os.Args)
-	local := exec.Command("git", "branch", "-D", os.Args[1])
-	remote := exec.Command("git", "push", "origin", "--delete", os.Args[2])
 
-	execAndOutput(local)
 	if all {
-		execAndOutput(remote)
+		execAndOutput(exec.Command("git", "branch", "-D", os.Args[2]))
+		execAndOutput(exec.Command("git", "push", "origin", "--delete", os.Args[2]))
+	} else {
+		execAndOutput(exec.Command("git", "branch", "-D", os.Args[1]))
 	}
 }
 
@@ -32,10 +31,6 @@ func execAndOutput(cmd *exec.Cmd) {
 		return
 	}
 	log.Printf("exec command: %s", cmd.String())
-	localOutput, err := cmd.Output()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	localOutput, _ := cmd.Output()
 	fmt.Println(string(localOutput))
 }

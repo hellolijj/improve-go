@@ -14,5 +14,6 @@ $ git branch -D new-feature
 # 使用方式
 
 ```
-cleanbranch new-feather
+gitbranch -a new-feature
+gitbranch new-feature
 ```
